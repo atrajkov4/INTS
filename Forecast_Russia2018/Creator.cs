@@ -67,7 +67,26 @@ namespace Forecast_Russia2018
             }
            
         }
-       
+
+        public string createMatches()
+        {
+            string p3 = putanja + "/Rezultati.txt";
+            string[] linije = System.IO.File.ReadAllLines(p3);
+            p3 = "";
+            foreach (string l in linije)
+            {
+                string[] n = l.Split(';');
+                Match g = new Match();
+                g.home = n[1];
+                g.away = n[2];
+                g.home_score = Int32.Parse(n[3]);
+                g.away_score = Int32.Parse(n[4]);
+
+            }
+
+            return p3;
+        }
+
 
     }
 }

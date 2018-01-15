@@ -11,10 +11,10 @@ namespace Forecast_Russia2018
         public Match() {
         }
 
-        Team home;
-        Team away;
-        int home_score;
-        int away_score;
+        public string home;
+        public string away;
+        public int home_score;
+        public int away_score;
         List<Player> scorers = new List<Player>();
         List<Player> sent_off = new List<Player>();
     }
