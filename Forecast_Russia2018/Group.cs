@@ -10,26 +10,15 @@ namespace Forecast_Russia2018
     {
         public Group() {
         }
+        public string name;
         int fip;
         int sp;
         int tp;
         int fop;
 
-        List<Match> all = new List<Match>();
-
-        Team first = new Team();
-        Team second = new Team();
-        Team third = new Team();
-        Team forth = new Team();
-
-        public Group(Team a, Team b, Team c, Team d) {
-            first = a;
-            second = b;
-            third = c;
-            forth = d;
-        }
-
-
+        public List<Match> all = new List<Match>();
+        public List<GroupRow> local = new List<GroupRow>();
+       
 
     }
 }

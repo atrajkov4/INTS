@@ -74,7 +74,8 @@ namespace Forecast_Russia2018
                     if (db.checkName(data[3]) == false)
                     {
                         Team t = new Team();
-                        t.name = data[3];
+                        string neu = data[3].Trim('"');
+                        t.name = neu;
                         db.addTeam(t);
                     }
                 }

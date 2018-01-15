@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="DB.cs" />
     <Compile Include="Group.cs" />
+    <Compile Include="GroupRow.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="F2R18.cs">
       <SubType>Form</SubType>

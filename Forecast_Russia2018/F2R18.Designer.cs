@@ -36,18 +36,22 @@
             // 
             this.tbRezultati.AcceptsTab = true;
             this.tbRezultati.AllowDrop = true;
+            this.tbRezultati.Font = new System.Drawing.Font("Tw Cen MT", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbRezultati.Location = new System.Drawing.Point(16, 12);
             this.tbRezultati.Multiline = true;
             this.tbRezultati.Name = "tbRezultati";
+            this.tbRezultati.ReadOnly = true;
             this.tbRezultati.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.tbRezultati.Size = new System.Drawing.Size(338, 569);
             this.tbRezultati.TabIndex = 0;
             // 
             // tbUkupniPlasman
             // 
+            this.tbUkupniPlasman.Font = new System.Drawing.Font("Tw Cen MT", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbUkupniPlasman.Location = new System.Drawing.Point(363, 12);
             this.tbUkupniPlasman.Multiline = true;
             this.tbUkupniPlasman.Name = "tbUkupniPlasman";
+            this.tbUkupniPlasman.ReadOnly = true;
             this.tbUkupniPlasman.Size = new System.Drawing.Size(339, 569);
             this.tbUkupniPlasman.TabIndex = 1;
             // 
