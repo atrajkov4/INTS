@@ -9,7 +9,7 @@ namespace Forecast_Russia2018
     class Team
     {
         List<Player> squad = new List<Player>();
-        string name;
+        public string name;
         int overall; // prosjek
         int potential; // prosjek 
         int fail_potential; // između 1 - 5

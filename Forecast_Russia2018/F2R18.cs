@@ -15,8 +15,7 @@ namespace Forecast_Russia2018
         public F2R18()
         {
             InitializeComponent();
-            PlayerCreator pc = new PlayerCreator();
-            tbRezultati.Text = pc.Connect();
+            
     }
 
 
