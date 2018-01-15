@@ -63,17 +63,19 @@ namespace Forecast_Russia2018
                         GroupRow gr = new GroupRow();
                         gr.team = t;
                         gr.points = 0;
-                        G.local.Add(gr);
+                        G.rows.Add(gr);
+
                     };
                     if (t.name == "Poland" || t.name == "Senegal" || t.name == "Colombia" || t.name == "Japan") {
                         GroupRow hr = new GroupRow();
                         hr.team = t;
                         hr.points = 0;
-                        H.local.Add(hr);
+                        H.rows.Add(hr);
                     }
             }
-                addGroup(G);
+
                 addGroup(H);
+                addGroup(G);
 
             }
             

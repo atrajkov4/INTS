@@ -17,7 +17,7 @@ namespace Forecast_Russia2018
         int fop;
 
         public List<Match> all = new List<Match>();
-        public List<GroupRow> local = new List<GroupRow>();
+        public List<GroupRow> rows = new List<GroupRow>();
        
 
     }

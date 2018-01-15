@@ -22,8 +22,9 @@ namespace Forecast_Russia2018
             db.distribute();
 
             foreach (Group g in db.giveGroups()) {
-                tbRezultati.Text += g.local.Count();
-                tbRezultati.Text += g.name + Environment.NewLine;
+                tbRezultati.Text += g.rows.Count() + Environment.NewLine;
+
+                /*tbRezultati.Text += g.name + Environment.NewLine;
                 foreach (GroupRow t in g.local) {
                     tbRezultati.Text += t.team.name + "  " + t.points.ToString() + Environment.NewLine; 
                 }
