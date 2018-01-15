@@ -17,7 +17,7 @@ namespace Forecast_Russia2018
 
        
 
-        public string Connect() {
+        public string createPlayers() {
             string p2 = putanja + "/DEFGH1.txt";
             string[] linije = System.IO.File.ReadAllLines(p2);
             p2 = "";
@@ -25,7 +25,20 @@ namespace Forecast_Russia2018
                 string[] n = l.Split(';');
                 Player g = new Player();
                 g.id = Int32.Parse(n[0]);
-                //g.
+                g.name = n[1];
+                g.age = Int32.Parse(n[2]);
+                g.overall = Int32.Parse(n[4]);
+                g.potential = Int32.Parse(n[5]);
+                g.club = n[6];
+                g.aggression = Int32.Parse(n[7]);
+                g.composure = Int32.Parse(n[8]);
+                g.reactions = Int32.Parse(n[9]);
+                g.visions = Int32.Parse(n[10]);
+                string[] pp = n[11].Split(' ');
+                foreach (string p in pp) {
+                    g.preffered.Add(p);
+                }
+
                     
                 }
 
@@ -41,10 +54,15 @@ namespace Forecast_Russia2018
             p2 = "";
             foreach (string l in linije) {
                 string[] data = l.Split(';');
-                if (db.provjeri(data[3]) == false) {
-                    Team t = new Team();
-                    t.name = data[3];
+                if(data[3] != "" || data[3] != null) {
+                    if (db.checkName(data[3]) == false)
+                    {
+                        Team t = new Team();
+                        t.name = data[3];
+                        db.addTeam(t);
+                    }
                 }
+                
             }
             {
             }

@@ -19,8 +19,9 @@ namespace Forecast_Russia2018
         public int reactions;
         public int visions;
         int kreator;
+        public string club;
         public int sent_away;
-        public string[] preffered;
+        public List<string> preffered = new List<string>();
         public string name;
         public bool selected;
         public bool eligible; // ozljeda ili crveni karton

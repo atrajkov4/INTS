@@ -39,5 +39,14 @@ namespace Forecast_Russia2018
         public void addTeam(Team t) {
             teams.Add(t);
         }
+
+        
+
+        public void addPlayer(Player p, string team) {
+            foreach (Team t in teams) {
+                if (t.name == team) t.squad.Add(p);
+            }
+        }
+
     }
 }

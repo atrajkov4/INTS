@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB.cs" />
+    <Compile Include="Group.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="F2R18.cs">
       <SubType>Form</SubType>
@@ -59,7 +61,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Player.cs" />
-    <Compile Include="PlayerCreator.cs" />
+    <Compile Include="Creator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Team.cs" />
