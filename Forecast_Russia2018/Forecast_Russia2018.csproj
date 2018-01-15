@@ -57,8 +57,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Player.cs" />
+    <Compile Include="PlayerCreator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Team.cs" />
     <EmbeddedResource Include="F2R18.resx">
       <DependentUpon>F2R18.cs</DependentUpon>
     </EmbeddedResource>
