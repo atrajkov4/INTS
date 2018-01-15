@@ -14,10 +14,17 @@ namespace Forecast_Russia2018
         }
         private string putanja = System.IO.Directory.GetCurrentDirectory();
 
-        void Connect() {
-            string[] linije = System.IO.File.ReadAllLines(putanja);
+        public string Connect() {
+            string p2 = putanja + "/DEFGH.txt";
+            string[] linije = System.IO.File.ReadAllLines(p2);
+            p2 = "";
+            foreach (string l in linije) {
 
-            //splitaj cuda isusova
+
+
+                //p2 += Environment.NewLine + l;
+            }
+            return p2;
         }
        
 
