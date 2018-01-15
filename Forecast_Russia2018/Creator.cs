@@ -14,12 +14,13 @@ namespace Forecast_Russia2018
         }
 
         private string putanja = System.IO.Directory.GetCurrentDirectory();
+        private Random rnd = new Random();
 
-       
+
 
         public void createPlayers() {
             DB db = DB.getInstance();
-            string p2 = putanja + "/DEFGH1.txt";
+            string p2 = putanja + "/DEFGH.txt";
             string[] linije = System.IO.File.ReadAllLines(p2);
             
             foreach (string l in linije) {
@@ -28,14 +29,30 @@ namespace Forecast_Russia2018
 
                 g.id = Int32.Parse(n[0]);
                 g.name = n[1];
-                g.age = Int32.Parse(n[2]);
+
+                try { g.age = Int32.Parse(n[2]); }
+                catch (Exception) { if (n[2] == "") g.age = 25; }
+
                 g.overall = Int32.Parse(n[4]);
-                g.potential = Int32.Parse(n[5]);
-                g.club = n[6];
-                g.aggression = Int32.Parse(n[7]);
-                g.composure = Int32.Parse(n[8]);
-                g.reactions = Int32.Parse(n[9]);
-                g.visions = Int32.Parse(n[10]);
+
+                try { g.potential = Int32.Parse(n[5]); }
+                catch (Exception) { if (n[5] == "") g.potential = rnd.Next(60, 90); }
+
+                if (n[6] == "") g.club = "None at the time";
+                else g.club = (n[6]);
+
+                try { g.aggression = Int32.Parse(n[7]); }
+                catch (Exception) { if (n[7] == "") g.aggression = rnd.Next(60, 90); }
+
+                try { g.composure = Int32.Parse(n[8]); }
+                catch (Exception e) { if (n[8]=="") g.composure = rnd.Next(60, 90); }
+
+                try { g.reactions = Int32.Parse(n[9]); }
+                catch (Exception) { if (n[9] == "") g.reactions = rnd.Next(60, 90); }
+
+                try { g.visions = Int32.Parse(n[10]); }
+                catch (Exception) { if (n[10] == "") g.visions = rnd.Next(60, 90); }
+
                 string[] pp = n[11].Split(' ');
                 foreach (string p in pp) {
                     g.preffered.Add(p);
@@ -48,7 +65,7 @@ namespace Forecast_Russia2018
 
         public void createState() {
             DB db = DB.getInstance();
-            string p2 = putanja + "/DEFGH1.txt";
+            string p2 = putanja + "/DEFGH.txt";
             string[] linije = System.IO.File.ReadAllLines(p2);
             p2 = "";
             foreach (string l in linije) {

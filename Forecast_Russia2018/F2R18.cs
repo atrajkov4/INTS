@@ -22,9 +22,10 @@ namespace Forecast_Russia2018
             List<Team> t = new List<Team>();
             t = db.giveTeams();
             foreach (Team s in t) {
-                tbRezultati.Text += s.name;
+                //tbRezultati.Text += s.name;
                 foreach (Player p in s.squad) {
-                    tbRezultati.Text += Environment.NewLine + @"\t" + s.name;
+                    tbRezultati.Text += Environment.NewLine + p.name;
+                    //tbRezultati.Text += Environment.NewLine + p.club;
                 }
                 tbRezultati.Text += Environment.NewLine;
             }
