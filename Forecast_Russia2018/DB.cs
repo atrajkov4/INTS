@@ -48,5 +48,9 @@ namespace Forecast_Russia2018
             }
         }
 
+        public List<Team> giveTeams() {
+            return teams;
+        }
+
     }
 }

@@ -15,7 +15,20 @@ namespace Forecast_Russia2018
         public F2R18()
         {
             InitializeComponent();
-            
+            Creator c = new Creator();
+            DB db = DB.getInstance();
+            c.createState();
+            c.createPlayers();
+            List<Team> t = new List<Team>();
+            t = db.giveTeams();
+            foreach (Team s in t) {
+                tbRezultati.Text += s.name;
+                foreach (Player p in s.squad) {
+                    tbRezultati.Text += Environment.NewLine + @"\t" + s.name;
+                }
+                tbRezultati.Text += Environment.NewLine;
+            }
+
     }
 
 

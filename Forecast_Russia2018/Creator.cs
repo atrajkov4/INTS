@@ -17,13 +17,15 @@ namespace Forecast_Russia2018
 
        
 
-        public string createPlayers() {
+        public void createPlayers() {
+            DB db = DB.getInstance();
             string p2 = putanja + "/DEFGH1.txt";
             string[] linije = System.IO.File.ReadAllLines(p2);
-            p2 = "";
+            
             foreach (string l in linije) {
                 string[] n = l.Split(';');
                 Player g = new Player();
+
                 g.id = Int32.Parse(n[0]);
                 g.name = n[1];
                 g.age = Int32.Parse(n[2]);
@@ -38,13 +40,10 @@ namespace Forecast_Russia2018
                 foreach (string p in pp) {
                     g.preffered.Add(p);
                 }
-
+                db.addPlayer(g, n[3]);
                     
                 }
-
-
-            //p2 += Environment.NewLine + l;
-            return p2;
+            
         }
 
         public void createState() {
