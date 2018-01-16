@@ -71,7 +71,8 @@ namespace Forecast_Russia2018
             foreach (string l in linije) {
                 string[] data = l.Split(';');
                 if(data[3] != "" || data[3] != null) {
-                    if (db.checkName(data[3]) == false)
+                    string neu2 = data[3].Trim('"');
+                    if (!db.checkName(neu2))
                     {
                         Team t = new Team();
                         string neu = data[3].Trim('"');
