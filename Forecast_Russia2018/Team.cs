@@ -10,12 +10,12 @@ namespace Forecast_Russia2018
     {
         public List<Player> squad = new List<Player>();
         public string name;
-        int overall; // prosjek
-        int potential; // prosjek 
-        int fail_potential; // između 1 - 5
+        public int overall; // prosjek
+        public int potential; // prosjek 
+        public int fail_potential; // između 1 - 5
         List<Match> last_games = new List<Match>();
         public int form; // ono na temelju zadnjih utakmica
-
+        int broj; //broj igraca po timu
         public Team() {
 
         }
@@ -41,9 +41,22 @@ namespace Forecast_Russia2018
 
             }
         }
-    
-        
 
+        public void calculateOverall()
+        {
+            DB db = DB.getInstance();
+            foreach (Team t in db.giveTeams())
+            {
+                broj = 0;
+                foreach (Player p in t.squad)
+                {
+                    t.overall = t.overall + p.overall;
+                    broj++;
+                }
+                t.overall = t.overall / broj;
+            }
+
+        }
 
     }
 }
