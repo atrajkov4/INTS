@@ -49,6 +49,11 @@ namespace Forecast_Russia2018
             return teams;
         }
 
+        public void addMatch(Match m)
+        {
+            matches.Add(m);
+        }
+
         public List<Match> giveMatches()
         {
             return matches;

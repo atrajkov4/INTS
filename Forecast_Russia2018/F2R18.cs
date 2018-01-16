@@ -16,25 +16,35 @@ namespace Forecast_Russia2018
         {
             InitializeComponent();
             Creator c = new Creator();
+            Team t = new Team();
             DB db = DB.getInstance();
             c.createState();
             c.createPlayers();
             c.createMatches();
+            t.calculateForm();
             db.distribute();
 
-            foreach (Group g in db.giveGroups()) {
+            foreach (Group g in db.giveGroups())
+            {
                 tbRezultati.Text += g.rows.Count() + Environment.NewLine;
 
-               /* foreach (GroupRow t in g.rows) {
-                    tbRezultati.Text += t.team.name + "  " + t.points.ToString() + Environment.NewLine; 
+                foreach (Team tt in db.giveTeams())
+                {
+                    tbRezultati.Text += tt.name + " ";
+                    tbRezultati.Text += tt.form + Environment.NewLine;
+
                 }
-                tbRezultati.Text += Environment.NewLine;
-                /*foreach (Player p in s.squad) {
-                    tbRezultati.Text += Environment.NewLine+ "     " + p.name;
-                    //tbRezultati.Text += Environment.NewLine + p.club;
+            
+                    /* foreach (GroupRow t in g.rows) {
+                         tbRezultati.Text += t.team.name + "  " + t.points.ToString() + Environment.NewLine; 
+                     }
+                     tbRezultati.Text += Environment.NewLine;
+                     /*foreach (Player p in s.squad) {
+                         tbRezultati.Text += Environment.NewLine+ "     " + p.name;
+                         //tbRezultati.Text += Environment.NewLine + p.club;
+                     }
+                     */
                 }
-                */
-            }
 
     }
 
