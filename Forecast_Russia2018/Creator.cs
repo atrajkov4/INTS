@@ -20,7 +20,7 @@ namespace Forecast_Russia2018
 
         public void createPlayers() {
             DB db = DB.getInstance();
-            string p2 = putanja + "/DEFGH.txt";
+            string p2 = putanja + "/Workbook3.csv";
             string[] linije = System.IO.File.ReadAllLines(p2);
             
             foreach (string l in linije) {
@@ -65,7 +65,7 @@ namespace Forecast_Russia2018
 
         public void createState() {
             DB db = DB.getInstance();
-            string p2 = putanja + "/DEFGH.txt";
+            string p2 = putanja + "/Workbook3.csv";
             string[] linije = System.IO.File.ReadAllLines(p2);
             p2 = "";
             foreach (string l in linije) {

@@ -20,7 +20,9 @@ namespace Forecast_Russia2018
         public void addGroup(Group Z) { wc.Add(Z); }
 
         List<Team> teams = new List<Team>();
-        
+
+        List<Match> matches = new List<Match>();
+
         public bool checkName(string naziv) {
             bool found = false;
             foreach (Team t in teams) {
@@ -45,6 +47,11 @@ namespace Forecast_Russia2018
 
         public List<Team> giveTeams() {
             return teams;
+        }
+
+        public List<Match> giveMatches()
+        {
+            return matches;
         }
 
         //group g  -  belg,panama,tunisia,england
@@ -143,6 +150,7 @@ namespace Forecast_Russia2018
             
 
         }
+
 
     }
 }

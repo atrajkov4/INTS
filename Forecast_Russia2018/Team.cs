@@ -21,5 +21,6 @@ namespace Forecast_Russia2018
         }
 
 
+
     }
 }
