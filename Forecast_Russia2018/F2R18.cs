@@ -23,17 +23,15 @@ namespace Forecast_Russia2018
             db.distribute();
 
             foreach (Group g in db.giveGroups()) {
-                tbRezultati.Text += g.rows.Count() + Environment.NewLine;
-
-               /* foreach (GroupRow t in g.rows) {
-                    tbRezultati.Text += t.team.name + "  " + t.points.ToString() + Environment.NewLine; 
+                
+                tbRezultati.Text += "Group " + g.name + Environment.NewLine;
+                
+               foreach (GroupRow t in g.rows) {
+                    if (t.team.name.Length < 6)  tbRezultati.Text += t.team.name + "\t\t\t" + t.points.ToString() + Environment.NewLine;
+                    else if (t.team.name.Length <= 6 && t.team.name.Length < 11) tbRezultati.Text += t.team.name + "\t\t" + t.points.ToString() + Environment.NewLine;
+                    else tbRezultati.Text += t.team.name + "\t" + t.points.ToString() + Environment.NewLine; 
                 }
                 tbRezultati.Text += Environment.NewLine;
-                /*foreach (Player p in s.squad) {
-                    tbRezultati.Text += Environment.NewLine+ "     " + p.name;
-                    //tbRezultati.Text += Environment.NewLine + p.club;
-                }
-                */
             }
 
     }

@@ -28,25 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbRezultati = new System.Windows.Forms.TextBox();
             this.tbUkupniPlasman = new System.Windows.Forms.TextBox();
+            this.tbRezultati = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
-            // 
-            // tbRezultati
-            // 
-            this.tbRezultati.AcceptsTab = true;
-            this.tbRezultati.AllowDrop = true;
-            this.tbRezultati.Font = new System.Drawing.Font("Tw Cen MT", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbRezultati.Location = new System.Drawing.Point(16, 12);
-            this.tbRezultati.Multiline = true;
-            this.tbRezultati.Name = "tbRezultati";
-            this.tbRezultati.ReadOnly = true;
-            this.tbRezultati.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbRezultati.Size = new System.Drawing.Size(338, 569);
-            this.tbRezultati.TabIndex = 0;
             // 
             // tbUkupniPlasman
             // 
+            this.tbUkupniPlasman.AcceptsTab = true;
             this.tbUkupniPlasman.Font = new System.Drawing.Font("Tw Cen MT", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbUkupniPlasman.Location = new System.Drawing.Point(363, 12);
             this.tbUkupniPlasman.Multiline = true;
@@ -55,14 +43,26 @@
             this.tbUkupniPlasman.Size = new System.Drawing.Size(339, 569);
             this.tbUkupniPlasman.TabIndex = 1;
             // 
+            // tbRezultati
+            // 
+            this.tbRezultati.AcceptsTab = true;
+            this.tbRezultati.Font = new System.Drawing.Font("Tw Cen MT", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbRezultati.Location = new System.Drawing.Point(12, 12);
+            this.tbRezultati.Name = "tbRezultati";
+            this.tbRezultati.ReadOnly = true;
+            this.tbRezultati.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.tbRezultati.Size = new System.Drawing.Size(345, 569);
+            this.tbRezultati.TabIndex = 2;
+            this.tbRezultati.Text = "";
+            // 
             // F2R18
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
             this.ClientSize = new System.Drawing.Size(720, 593);
-            this.Controls.Add(this.tbUkupniPlasman);
             this.Controls.Add(this.tbRezultati);
+            this.Controls.Add(this.tbUkupniPlasman);
             this.Name = "F2R18";
             this.Text = "F2R18";
             this.ResumeLayout(false);
@@ -71,8 +71,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbRezultati;
         private System.Windows.Forms.TextBox tbUkupniPlasman;
+        private System.Windows.Forms.RichTextBox tbRezultati;
     }
 }
