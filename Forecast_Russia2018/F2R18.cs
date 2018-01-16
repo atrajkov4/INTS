@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,12 +16,27 @@ namespace Forecast_Russia2018
         {
             InitializeComponent();
             Creator c = new Creator();
+            Team t = new Team();
             DB db = DB.getInstance();
             c.createState();
             c.createPlayers();
             c.createMatches();
+            t.calculateForm();
             db.distribute();
 
+
+
+             foreach (Group g in db.giveGroups())
+            {
+                tbRezultati.Text += g.rows.Count() + Environment.NewLine;
+
+                foreach (Team tt in db.giveTeams())
+                {
+                    tbRezultati.Text += tt.name + " ";
+                    tbRezultati.Text += tt.form + Environment.NewLine;
+
+                }
+            
             foreach (Group g in db.giveGroups()) {
                 
                 tbRezultati.Text += "Group " + g.name + Environment.NewLine;
@@ -33,6 +48,7 @@ namespace Forecast_Russia2018
                 }
                 tbRezultati.Text += Environment.NewLine;
             }
+
 
     }
 

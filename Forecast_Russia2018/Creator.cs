@@ -87,8 +87,9 @@ namespace Forecast_Russia2018
            
         }
 
-        public string createMatches()
+        public void createMatches()
         {
+            DB db = DB.getInstance();
             string p3 = putanja + "/Rezultati.txt";
             string[] linije = System.IO.File.ReadAllLines(p3);
             p3 = "";
@@ -100,10 +101,9 @@ namespace Forecast_Russia2018
                 g.away = n[2];
                 g.home_score = Int32.Parse(n[3]);
                 g.away_score = Int32.Parse(n[4]);
-
+                db.addMatch(g);
             }
 
-            return p3;
         }
 
 
