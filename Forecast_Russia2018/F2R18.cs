@@ -30,41 +30,12 @@ namespace Forecast_Russia2018
             foreach (Group g in db.giveGroups()) {
                 foreach (GroupRow gr in g.rows) gr.team.genPot();
             }
-            /*
-            Team t1 = new Team();
-            Team t2 = new Team();
-            foreach (Group g in db.giveGroups()) {
-                foreach (GroupRow gr in g.rows) {
-                    if (gr.team.name == "Germany") t1 = gr.team;
-                    if (gr.team.name == "Sweden") t2 = gr.team;
-                }
-            }
-            Match m = new Match(t1, t2);
-            m.Play();
-            tbRezultati.Text += m.home + " " + m.home_score + ":" + m.away_score + " " + m.away + Environment.NewLine;
-
-            foreach (Group g in db.giveGroups())
-            {
-                foreach (GroupRow gr in g.rows)
-                {
-                    if (gr.team.name == "Switzerland") t1 = gr.team;
-                    if (gr.team.name == "Serbia") t2 = gr.team;
-                }
-
-            }
            
-            Match m2 = new Match(t1, t2);
-            m2.Play();
-            tbRezultati.Text += m2.home + " " + m2.home_score + ":" + m2.away_score + " " + m2.away + Environment.NewLine;
-           */
 
             db.PlayOff();
             foreach (Group g in db.giveGroups())
             {
-                /* tbUkupniPlasman.Text += g.firstFinal;
-                 tbRezultati.Text += "F=" + g.first + " S=" + g.second + " G=" + g.name + Environment.NewLine;
-                 tbRezultati.Text += "PobjedaQ=" + g.firstQ + "DrugaQ=" + g.secondQ + Environment.NewLine;
-                 tbRezultati.Text += "PobjedaQQ=" + g.firstQQ + "DrugaQQ=" + g.secondQQ + Environment.NewLine;*/
+                 
                 tbRezultati.Text += "[Group " + g.name + "]\t\t\tPts\tPwr" + Environment.NewLine + "-------------------------------------------------------" + Environment.NewLine;
 
                 foreach (GroupRow t in g.rows)
@@ -79,9 +50,43 @@ namespace Forecast_Russia2018
                 }
                 tbRezultati.Text += Environment.NewLine;
             }
+
+            tbRezultati.Text += "\n-------------------------------------------------------\n\t\t[REZULTATI] 1.PlayOff svega";
+            foreach (Match m in db.giveMatch()) {
+                
+                tbRezultati.Text += Environment.NewLine + m.home + " " + m.home_score + " : " + m.away_score + " " + m.away;
+                
+                
+            }
+            for (int i = 0; i < 100; i++) {
+                
+                tbUkupniPlasman.Text = "";
+                db.PlayOff();
+                if (i == 99) {
+                    List<GroupRow> n = db.giveKonacna();
+                     n.GroupBy(z => z.team).ToList();
+                    //n.OrderByDescending(z => z.points).ToList();
+                   if (n.Count() > 32) {
+                       n.RemoveRange(0, n.Count()-32);
+                    }
+                    n = n.OrderByDescending(a => a.points).ToList();
+                    foreach (GroupRow gr in n)
+                    {
+                        if(gr.points > 100) tbUkupniPlasman.Text += gr.team.name + " : " + gr.points + Environment.NewLine;
+                    }
+                }
+               
+            }
+            tbUkupniPlasman.Text += "Total : " + db.giveKonacna().Count().ToString();
+
+            
         }
 
 
     }
+
+    internal class grouprow
+    {
     }
+}
 

@@ -60,8 +60,20 @@ namespace Forecast_Russia2018
         }
         int pomocna = 0;
 
-        //group g  -  belg,panama,tunisia,england
-        //group h -  poland,senegal,colombia,
+        
+        public List<GroupRow> giveKonacna() {
+            return konacna;
+        }
+        public void konacnaAdd(GroupRow gr) {
+            bool found = false;
+            foreach(GroupRow t in konacna) {
+                if (t.team.name == gr.team.name) {
+                    found = true;
+                }
+            }
+            if(!found) konacna.Add(gr);
+            
+        }
 
         public void distribute() {
             if (teams.Count > 0) {
@@ -156,32 +168,50 @@ namespace Forecast_Russia2018
 
 
         }
-
-        public void helper(string naziv1, string naziv2)
+        List<Match> odigrane = new List<Match>();
+        public void getMatch(Match m) {
+            odigrane.Add(m);
+        }
+        public List<Match> giveMatch() {
+            return odigrane;
+        }
+        public int helper(string naziv1, string naziv2)
         {
-            
+            int b = 5;
             foreach (Group s in wc)
             {
                 Team prvi = new Team();
+                bool da = false;
+                bool da2 = false;
                 Team drugi = new Team();
                 foreach (GroupRow gr in s.rows)
                 {
 
-                    if (gr.team.name == naziv1) prvi = gr.team;
-                    if (gr.team.name == naziv2) drugi = gr.team;
+                    if (gr.team.name == naziv1) {
+                        prvi = gr.team;
+                        da = true;
+                    }
+                    
+                    if (gr.team.name == naziv2) {
+                        drugi = gr.team;
+                        da2 = true;
+                    }
+                    
                 }
 
 
-                if (prvi != null && drugi != null)
+                if (da && da2)
                 {
                     Match game = new Match(prvi, drugi);
                     game.Play();
-                    Console.Write(game.home + " " + game.home_score + ":" + game.away_score + " " + game.away + Environment.NewLine);
+                    //Console.Write(game.home + " " + game.home_score + ":" + game.away_score + " " + game.away + Environment.NewLine);
+                    getMatch(game);
                     if (game.home_score > game.away_score)
                     {
                         foreach (GroupRow gr in s.rows)
                         {
-                            if (gr.team.name == game.home) gr.points += 3;
+                            if (gr.team.name == game.home) gr.points += 1;
+                            b = 1;
                         }
 
                     }
@@ -190,7 +220,8 @@ namespace Forecast_Russia2018
                         foreach (GroupRow gr in s.rows)
                         {
                             if (gr.team.name == game.away)
-                                gr.points += 3;
+                                gr.points += 1;
+                            b = 2;
                         }
                     }
                     else {
@@ -198,6 +229,7 @@ namespace Forecast_Russia2018
                         {
                             if (gr.team.name == game.away) gr.points += 1;
                             if (gr.team.name == game.home) gr.points += 1;
+                            b =  0;
                         }
 
                     }
@@ -205,10 +237,33 @@ namespace Forecast_Russia2018
 
 
                 }
+                
             }
+            return b;
+        }
+        public void copycat() {
+            foreach (Group g in wc) {
+                foreach (GroupRow gg in g.rows) {
+                    GroupRow what = new GroupRow();
+                    what = gg;
+                    konacna.Add(gg);
+                }
+            }
+        }
+        List<GroupRow> konacna = new List<GroupRow>();
+
+        public Team getTeam(string naziv) {
+            Team b = new Team();
+            foreach (Group g in wc) {
+                foreach (GroupRow gr in g.rows) {
+                    if (gr.team.name == naziv) b = gr.team;
+                }
+            }
+            return b;
         }
 
         public void PlayOff() {
+            copycat();
             //proc grupama
             //nac parove za tekmu (9 tekma po grupi)
             //koristit Match(ekipa1,ekipa2), prilikom zavrsetka tekme azurirat bodove u grupi -> grouprows (team,points)
@@ -357,8 +412,45 @@ namespace Forecast_Russia2018
                     {
                         if(gg.name == "B")
                         {
-                            helper(g.first, gg.second);
-                            helper(g.second, gg.first);
+                            m1: int rez = helper(g.first, gg.second);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.second);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.first);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m1;
+
+                            m2: rez = helper(g.second, gg.first);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.first);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.second);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m2;
                         }
                     }
                     //pobjedniciOsminaFinala-----Ab1
@@ -392,8 +484,44 @@ namespace Forecast_Russia2018
                     {
                         if (gg.name == "D")
                         {
-                            helper(g.first, gg.second);
-                            helper(g.second, gg.first);
+                            m1: int rez = helper(g.first, gg.second);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.second);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.first);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m1;
+                            m2: rez = helper(g.second, gg.first);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.first);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.second);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m2;
                         }
                     }
                     //pobjedniciOsminaFinala-----cd1
@@ -427,8 +555,44 @@ namespace Forecast_Russia2018
                     {
                         if (gg.name == "F")
                         {
-                            helper(g.first, gg.second);
-                            helper(g.second, gg.first);
+                            m1: int rez = helper(g.first, gg.second);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.second);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.first);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m1;
+                            m2: rez = helper(g.second, gg.first);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.first);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.second);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m2;
                         }
                     }
                     //pobjedniciOsminaFinala-----ef1
@@ -462,8 +626,44 @@ namespace Forecast_Russia2018
                     {
                         if (gg.name == "H")
                         {
-                            helper(g.first, gg.second);
-                            helper(g.second, gg.first);
+                            m1: int rez = helper(g.first, gg.second);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.second);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.first);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m1;
+                            m2: rez = helper(g.second, gg.first);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.first);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.second);
+                                gr.points += 1;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m2;
                         }
                     }
                     //pobjedniciOsminaFinala-----gh1
@@ -502,8 +702,44 @@ namespace Forecast_Russia2018
                     {
                         if (gg.name == "C")
                         {
-                            helper(g.firstQ, gg.secondQ);
-                            helper(g.secondQ, gg.firstQ);
+                            m1: int rez = helper(g.firstQ, gg.secondQ);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.secondQ);
+                                gr.points += 6;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.firstQ);
+                                gr.points += 6;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m1;
+                            m2: rez = helper(g.secondQ, gg.firstQ);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.firstQ);
+                                gr.points += 6;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.secondQ);
+                                gr.points += 6;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m2;
                         }
                     }
                     //pobjedniciCEtvrfinala-----A1b2 vs D1c2
@@ -537,8 +773,44 @@ namespace Forecast_Russia2018
                     {
                         if (gg.name == "F")
                         {
-                            helper(g.firstQ, gg.secondQ);
-                            helper(g.secondQ, gg.firstQ);
+                            m1: int rez = helper(g.firstQ, gg.secondQ);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.secondQ);
+                                gr.points += 6;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.firstQ);
+                                gr.points += 6;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m1;
+                            m2: rez = helper(g.secondQ, gg.firstQ);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.firstQ);
+                                gr.points += 6;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.secondQ);
+                                gr.points += 6;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m2;
                         }
                     }
                     //pobjedniciCEtvrfinala-----D1E2 vs F2G1
@@ -576,8 +848,44 @@ namespace Forecast_Russia2018
                     {
                         if (gg.name == "E")
                         {
-                            helper(g.firstS, gg.secondS);
-                            helper(g.secondS, gg.firstS);
+                            m1: int rez = helper(g.firstS, gg.secondS);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.secondS);
+                                gr.points += 18;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.firstS);
+                                gr.points += 18;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m1;
+                            m2: rez= helper(g.secondS, gg.firstS);
+                            if (rez == 1)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(gg.firstS);
+                                gr.points += 18;
+                                konacnaAdd(gr);
+                            }
+                            else if (rez == 2)
+                            {
+                                GroupRow gr = new GroupRow();
+
+                                gr.team = getTeam(g.secondS);
+                                gr.points += 18;
+                                konacnaAdd(gr);
+
+                            }
+                            else if (rez == 0) goto m2;
                         }
                     }
                     //pobjedniciPrvogPolufinala
@@ -611,7 +919,35 @@ namespace Forecast_Russia2018
             {
                 if (g.name == "A")
                 {                    
-                    helper(g.firstS, g.secondS);
+                    m1: int rez = helper(g.firstS, g.secondS);
+                    if (rez == 1)
+                    {
+                        GroupRow gr = new GroupRow();
+
+                        gr.team = getTeam(g.secondS);
+                        gr.points += 30;
+                        konacnaAdd(gr);
+
+                        GroupRow gr2 = new GroupRow();
+                        gr2.team = getTeam(g.firstS);
+                        gr2.points += 50;
+                        konacna.Add(gr2);
+                    }
+                    else if (rez == 2)
+                    {
+                        GroupRow gr = new GroupRow();
+
+                        gr.team = getTeam(g.firstS);
+                        gr.points += 30;
+                        konacnaAdd(gr);
+
+                        GroupRow gr2 = new GroupRow();
+                        gr2.team = getTeam(g.secondS);
+                        gr2.points += 50;
+                        konacna.Add(gr2);
+
+                    }
+                    else if (rez == 0) goto m1;
                     //pobjedniciFinala
                     pomocna = 0;
                     foreach (GroupRow gr in g.rows)
@@ -626,6 +962,8 @@ namespace Forecast_Russia2018
                 }
 
             }
+            //konacna.OrderBy(a=>a.points);
+           
         }
 
 

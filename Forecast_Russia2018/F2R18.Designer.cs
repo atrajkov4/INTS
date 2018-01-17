@@ -40,6 +40,7 @@
             this.tbUkupniPlasman.Multiline = true;
             this.tbUkupniPlasman.Name = "tbUkupniPlasman";
             this.tbUkupniPlasman.ReadOnly = true;
+            this.tbUkupniPlasman.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.tbUkupniPlasman.Size = new System.Drawing.Size(339, 569);
             this.tbUkupniPlasman.TabIndex = 1;
             // 

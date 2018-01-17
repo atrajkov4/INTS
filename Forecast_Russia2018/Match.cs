@@ -32,101 +32,108 @@ namespace Forecast_Russia2018
             
         }
 
-        Random r = new Random();
-        Random r2 = new Random();
-        Random r3 = new Random();
-       
+        
 
         public float takeTime() {
-            Thread.Sleep(15);
+            Thread.Sleep(7);
             long dt = DateTime.Now.Millisecond;
             return (float)dt/10;
         }
 
         public long takeTicks() {
-            long dt = DateTime.Now.Ticks;
-            return dt;
+            Thread.Sleep(7);
+            long dt = Environment.TickCount;
+            return dt/1000000;
         }
 
         public void Play() {
+            Random r = new Random();
+            Random r2 = new Random();
+            Random r3 = new Random();
+
             chancesHome = (h.potency / (h.potency + a.potency)) * 100;
-            
-            if ( takeTime() <= (int)chancesHome + 1)
+            int b = StaticRandom.Instance.Next(1, 100);
+            Console.Write(b + " <= " + chancesHome + Environment.NewLine);
+            if ( b <= (int)chancesHome + 1)
             {
                 
-                if (takeTicks() % 2 == 0)
+                if (StaticRandom.Instance.Next(1, 100) % 7 == 0)
                 {
                    
                     do
                     {
-                        home_score = r3.Next(1, 7);
-                        away_score = r3.Next(1, 7);
-                        h.goals += home_score;
-                        a.goals += away_score;
+                        home_score = r3.Next(0, 3);
+                        away_score = r3.Next(0, 2);
+                      
 
                     } while (home_score <= away_score);
-
+                    h.goals += home_score;
+                    a.goals += away_score;
                 }
-                else if (takeTicks() % 3 == 0)
+                else if (StaticRandom.Instance.Next(1, 100) % 3 == 0)
                 {
                     
                     do
                     {
-                        home_score = r3.Next(2, 5);
-                        away_score = r3.Next(2, 5);
-                        h.goals += home_score;
-                        a.goals += away_score;
+                        home_score = r3.Next(0, 3);
+                        away_score = r3.Next(0, 3);
+                        
 
                     } while (home_score != away_score);
+                    h.goals += home_score;
+                    a.goals += away_score;
                 }
                 else 
                 {
                     
                     do
                     {
-                        home_score = r3.Next(0, 4);
-                        away_score = r3.Next(0, 4);
-                        h.goals += home_score;
-                        a.goals += away_score;
+                        home_score = r3.Next(2, 4);
+                        away_score = r3.Next(0, 3);
+                        
 
 
                     } while (home_score <= away_score);
+                    h.goals += home_score;
+                    a.goals += away_score;
                 }
             }
             else {
                 
-                if (takeTicks() % 2 == 0)
+                if (StaticRandom.Instance.Next(1, 100) % 7 == 0)
                 {
                     do
                     {
-                        home_score = r3.Next(1, 3);
-                        away_score = r3.Next(1, 3);
-                        h.goals += home_score;
-                        a.goals += away_score;
+                        home_score = r3.Next(0, 2);
+                        away_score = r3.Next(0, 3);
+                        
 
                     } while (home_score >= away_score);
-
+                    h.goals += home_score;
+                    a.goals += away_score;
                 }
-                else if (takeTicks() % 3 == 0)
+                else if (StaticRandom.Instance.Next(1, 100) % 3 == 0)
                 {
                     do
                     {
-                        home_score = r3.Next(2, 6);
-                        away_score = r3.Next(2, 6);
-                        h.goals += home_score;
-                        a.goals += away_score;
+                        home_score = r3.Next(0, 3);
+                        away_score = r3.Next(0, 3);
+                        
                     } while (home_score != away_score);
+                    h.goals += home_score;
+                    a.goals += away_score;
                 }
                 else 
                 {
 
                     do
                     {
-                        home_score = r3.Next(0, 4);
-                        away_score = r3.Next(0, 4);
-                        h.goals += home_score;
-                        a.goals += away_score;
+                        home_score = r3.Next(0, 3);
+                        away_score = r3.Next(2, 4);
+                       
                     } while (home_score >= away_score);
+                    h.goals += home_score;
+                    a.goals += away_score;
                 }
 
             }
