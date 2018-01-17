@@ -11,8 +11,8 @@ namespace Forecast_Russia2018
         public Group() {
         }
         public string name;
-        int fip;
-        int sp;
+        public string first;
+        public string second;
         int tp;
         int fop;
 

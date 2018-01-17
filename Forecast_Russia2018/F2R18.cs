@@ -61,7 +61,7 @@ namespace Forecast_Russia2018
             db.PlayOff();
             foreach (Group g in db.giveGroups())
                 {
-                    
+                    tbUkupniPlasman.Text += "F=" + g.first + " S="+ g.second + " G="+ g.name + Environment.NewLine;
                     tbRezultati.Text += "[Group " + g.name + "]\t\t\tPts\tPwr" + Environment.NewLine + "-------------------------------------------------------" + Environment.NewLine;
                 
                     foreach (GroupRow t in g.rows)
