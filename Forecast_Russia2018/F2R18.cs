@@ -36,14 +36,16 @@ namespace Forecast_Russia2018
                     
                     foreach (GroupRow t in g.rows)
                     {
+                    t.team.calculateForm();
+                    t.team.calculateOverall();
+                    t.team.genPot();
+                    tbRezultati.Text += t.team.name + "  " + t.team.potency.ToString();
+
+                    /*
                     if(t.team.name.Length < 5) tbRezultati.Text += t.team.name + "\t\t\t\t" + t.points.ToString() + Environment.NewLine;
                     else if (t.team.name.Length >= 5 && t.team.name.Length < 10) tbRezultati.Text += t.team.name + "\t\t\t" + t.points.ToString() + Environment.NewLine;
                     else tbRezultati.Text += t.team.name + "\t\t" + t.points.ToString() + Environment.NewLine;
-                    /*
-                        if (t.team.name.Length < 6) tbRezultati.Text += t.team.name + "\t\t\t" + t.points.ToString() + Environment.NewLine;
-                        else if (t.team.name.Length <= 6 && t.team.name.Length < 11) tbRezultati.Text += t.team.name + "\t\t" + t.points.ToString() + Environment.NewLine;
-                        else tbRezultati.Text += t.team.name + "\t" + t.points.ToString() + Environment.NewLine;
-                        */
+                    */
                 }
                     tbRezultati.Text += Environment.NewLine;
                 }
@@ -52,6 +54,7 @@ namespace Forecast_Russia2018
             //{
             //    tbUkupniPlasman.Text += z.name + " " + z.form + " " + z.fail_potential + Environment.NewLine;
             //}
+
 
             }
 
