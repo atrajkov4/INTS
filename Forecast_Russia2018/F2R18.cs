@@ -22,7 +22,8 @@ namespace Forecast_Russia2018
             c.createPlayers();
             c.createMatches();
             tt.calculateForm();
-            tt.calculateOverall();
+            tt.calculateOverallAndPotential();
+            tt.calculateFailPotential();
             db.distribute();
 
 
@@ -46,7 +47,11 @@ namespace Forecast_Russia2018
                 }
                     tbRezultati.Text += Environment.NewLine;
                 }
-
+                
+            //    foreach (Team z in db.giveTeams())
+            //{
+            //    tbUkupniPlasman.Text += z.name + " " + z.form + " " + z.fail_potential + Environment.NewLine;
+            //}
 
             }
 

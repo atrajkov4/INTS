@@ -42,7 +42,7 @@ namespace Forecast_Russia2018
             }
         }
 
-        public void calculateOverall()
+        public void calculateOverallAndPotential()
         {
             DB db = DB.getInstance();
             foreach (Team t in db.giveTeams())
@@ -51,9 +51,24 @@ namespace Forecast_Russia2018
                 foreach (Player p in t.squad)
                 {
                     t.overall = t.overall + p.overall;
+                    t.potential = t.potential + p.potential;
                     broj++;
                 }
                 t.overall = t.overall / broj;
+                t.potential = t.potential / broj;
+            }
+
+        }
+        public void calculateFailPotential()
+        {
+            DB db = DB.getInstance();
+            foreach (Team t in db.giveTeams())
+            {
+                if (t.form < 8) t.fail_potential = 5;
+                if (t.form >= 8 & t.form < 10) t.fail_potential = 4;
+                if (t.form >= 10 & t.form < 13) t.fail_potential = 3;
+                if (t.form >= 13 & t.form < 16) t.fail_potential = 2;
+                if (t.form >= 16) t.fail_potential = 1;
             }
 
         }
