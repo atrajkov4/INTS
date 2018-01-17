@@ -58,6 +58,7 @@ namespace Forecast_Russia2018
         {
             return matches;
         }
+        int pomocna = 0;
 
         //group g  -  belg,panama,tunisia,england
         //group h -  poland,senegal,colombia,
@@ -316,9 +317,36 @@ namespace Forecast_Russia2018
             helper("Sweden", "Mexico");
             helper("Korea Republic", "Mexico");
             helper("Korea Republic", "Sweden");
+
             foreach (Group g in wc) {
-                g.rows.OrderByDescending(a => a.points);
+                // g.rows.OrderByDescending(a => a.points);
+                pomocna = 0;
+                foreach(GroupRow gr in g.rows)
+                {
+                    if (gr.points > pomocna)
+                    {
+                        g.first = gr.team.name;
+                        pomocna = gr.points;
+                    }
+                }
             }
+            foreach (Group g in wc)
+            {
+                pomocna = 0;
+                foreach (GroupRow gr in g.rows)
+                {
+                    if(!(g.first ==gr.team.name))
+                    {
+                        if (gr.points > pomocna)
+                        {
+                            g.second = gr.team.name;
+                            pomocna = gr.points;
+                        }
+
+                    }
+                }
+            }
+
         }
 
 
