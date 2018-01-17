@@ -16,6 +16,12 @@ namespace Forecast_Russia2018
         List<Match> last_games = new List<Match>();
         public int form; // ono na temelju zadnjih utakmica
         int broj; //broj igraca po timu
+        public int potency;
+
+        public void genPot() {
+            potency = form * (overall * potential) / 100 * (1 / fail_potential);
+        }
+
         public Team() {
 
         }
