@@ -318,6 +318,7 @@ namespace Forecast_Russia2018
             helper("Korea Republic", "Mexico");
             helper("Korea Republic", "Sweden");
 
+            ///prviuGrupi
             foreach (Group g in wc) {
                 // g.rows.OrderByDescending(a => a.points);
                 pomocna = 0;
@@ -330,6 +331,7 @@ namespace Forecast_Russia2018
                     }
                 }
             }
+            ///DrugiUGrupi
             foreach (Group g in wc)
             {
                 pomocna = 0;
@@ -346,7 +348,284 @@ namespace Forecast_Russia2018
                     }
                 }
             }
+            ///OsminaFinala
+            foreach (Group g in wc)
+            {
+                if(g.name == "A")
+                {
+                    foreach(Group gg in wc)
+                    {
+                        if(gg.name == "B")
+                        {
+                            helper(g.first, gg.second);
+                            helper(g.second, gg.first);
+                        }
+                    }
+                    //pobjedniciOsminaFinala-----Ab1
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (gr.points > pomocna)
+                        {
+                            g.firstQ = gr.team.name;
+                            pomocna = gr.points;
+                        }
+                    }
+                    //pobjedniciOsminaFinala-----Ab2
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (!(g.firstQ == gr.team.name))
+                        {
+                            if (gr.points > pomocna)
+                            {
+                                g.secondQ = gr.team.name;
+                                pomocna = gr.points;
+                            }
 
+                        }
+                    }
+                }
+                if (g.name == "C")
+                {
+                    foreach (Group gg in wc)
+                    {
+                        if (gg.name == "D")
+                        {
+                            helper(g.first, gg.second);
+                            helper(g.second, gg.first);
+                        }
+                    }
+                    //pobjedniciOsminaFinala-----cd1
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (gr.points > pomocna)
+                        {
+                            g.firstQ = gr.team.name;
+                            pomocna = gr.points;
+                        }
+                    }
+                    //pobjedniciOsminaFinala-----cd2
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (!(g.firstQ == gr.team.name))
+                        {
+                            if (gr.points > pomocna)
+                            {
+                                g.secondQ = gr.team.name;
+                                pomocna = gr.points;
+                            }
+
+                        }
+                    }
+                }
+                if (g.name == "E")
+                {
+                    foreach (Group gg in wc)
+                    {
+                        if (gg.name == "F")
+                        {
+                            helper(g.first, gg.second);
+                            helper(g.second, gg.first);
+                        }
+                    }
+                    //pobjedniciOsminaFinala-----ef1
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (gr.points > pomocna)
+                        {
+                            g.firstQ = gr.team.name;
+                            pomocna = gr.points;
+                        }
+                    }
+                    //pobjedniciOsminaFinala-----ef2
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (!(g.firstQ == gr.team.name))
+                        {
+                            if (gr.points > pomocna)
+                            {
+                                g.secondQ = gr.team.name;
+                                pomocna = gr.points;
+                            }
+
+                        }
+                    }
+                }
+                if (g.name == "G")
+                {
+                    foreach (Group gg in wc)
+                    {
+                        if (gg.name == "H")
+                        {
+                            helper(g.first, gg.second);
+                            helper(g.second, gg.first);
+                        }
+                    }
+                    //pobjedniciOsminaFinala-----gh1
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (gr.points > pomocna)
+                        {
+                            g.firstQ = gr.team.name;
+                            pomocna = gr.points;
+                        }
+                    }
+                    //pobjedniciOsminaFinala-----gh2
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (!(g.firstQ == gr.team.name))
+                        {
+                            if (gr.points > pomocna)
+                            {
+                                g.secondQ = gr.team.name;
+                                pomocna = gr.points;
+                            }
+
+                        }
+                    }
+                }
+
+            }
+            //Cetvrtfinale
+            foreach(Group g in wc)
+            {
+                if (g.name == "A")
+                {
+                    foreach (Group gg in wc)
+                    {
+                        if (gg.name == "C")
+                        {
+                            helper(g.firstQ, gg.secondQ);
+                            helper(g.secondQ, gg.firstQ);
+                        }
+                    }
+                    //pobjedniciCEtvrfinala-----A1b2 vs D1c2
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (gr.points > pomocna)
+                        {
+                            g.firstQQ = gr.team.name;
+                            pomocna = gr.points;
+                        }
+                    }
+                    //pobjedniciCEtvrfinala-----A2b1 vs C1D2
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (!(g.firstQQ == gr.team.name))
+                        {
+                            if (gr.points > pomocna)
+                            {
+                                g.secondQQ = gr.team.name;
+                                pomocna = gr.points;
+                            }
+
+                        }
+                    }
+                }
+                if (g.name == "D")
+                {
+                    foreach (Group gg in wc)
+                    {
+                        if (gg.name == "F")
+                        {
+                            helper(g.firstQ, gg.secondQ);
+                            helper(g.secondQ, gg.firstQ);
+                        }
+                    }
+                    //pobjedniciCEtvrfinala-----D1E2 vs F2G1
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (gr.points > pomocna)
+                        {
+                            g.firstQQ = gr.team.name;
+                            pomocna = gr.points;
+                        }
+                    }
+                    //pobjedniciCEtvrfinala-----D2E1 vs F1G2
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (!(g.firstQQ == gr.team.name))
+                        {
+                            if (gr.points > pomocna)
+                            {
+                                g.secondQQ = gr.team.name;
+                                pomocna = gr.points;
+                            }
+
+                        }
+                    }
+                }
+            }
+            //polufinale
+            foreach (Group g in wc)
+            {
+                if (g.name == "A")
+                {
+                    foreach (Group gg in wc)
+                    {
+                        if (gg.name == "E")
+                        {
+                            helper(g.firstS, gg.secondS);
+                            helper(g.secondS, gg.firstS);
+                        }
+                    }
+                    //pobjedniciPrvogPolufinala
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (gr.points > pomocna)
+                        {
+                            g.firstS = gr.team.name;
+                            pomocna = gr.points;
+                        }
+                    }
+                    //pobjedniciDrugogPolufinala
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (!(g.firstS == gr.team.name))
+                        {
+                            if (gr.points > pomocna)
+                            {
+                                g.secondS = gr.team.name;
+                                pomocna = gr.points;
+                            }
+
+                        }
+                    }
+                }
+            }
+            /////FINALE
+            foreach (Group g in wc)
+            {
+                if (g.name == "A")
+                {                    
+                    helper(g.firstS, g.secondS);
+                    //pobjedniciFinala
+                    pomocna = 0;
+                    foreach (GroupRow gr in g.rows)
+                    {
+                        if (gr.points > pomocna)
+                        {
+                            g.firstFinal = gr.team.name;
+                            pomocna = gr.points;
+                        }
+                    }
+
+                }
+
+            }
         }
 
 

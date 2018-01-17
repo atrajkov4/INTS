@@ -26,7 +26,7 @@ namespace Forecast_Russia2018
             tt.calculateOverallAndPotential();
             tt.calculateFailPotential();
             db.distribute();
-            
+
             foreach (Group g in db.giveGroups()) {
                 foreach (GroupRow gr in g.rows) gr.team.genPot();
             }
@@ -57,30 +57,28 @@ namespace Forecast_Russia2018
             m2.Play();
             tbRezultati.Text += m2.home + " " + m2.home_score + ":" + m2.away_score + " " + m2.away + Environment.NewLine;
            */
-             
+
             db.PlayOff();
             foreach (Group g in db.giveGroups())
+            {
+                /* tbUkupniPlasman.Text += g.firstFinal;
+                 tbRezultati.Text += "F=" + g.first + " S=" + g.second + " G=" + g.name + Environment.NewLine;
+                 tbRezultati.Text += "PobjedaQ=" + g.firstQ + "DrugaQ=" + g.secondQ + Environment.NewLine;
+                 tbRezultati.Text += "PobjedaQQ=" + g.firstQQ + "DrugaQQ=" + g.secondQQ + Environment.NewLine;*/
+                tbRezultati.Text += "[Group " + g.name + "]\t\t\tPts\tPwr" + Environment.NewLine + "-------------------------------------------------------" + Environment.NewLine;
+
+                foreach (GroupRow t in g.rows)
                 {
-                    tbUkupniPlasman.Text += "F=" + g.first + " S="+ g.second + " G="+ g.name + Environment.NewLine;
-                    tbRezultati.Text += "[Group " + g.name + "]\t\t\tPts\tPwr" + Environment.NewLine + "-------------------------------------------------------" + Environment.NewLine;
-                
-                    foreach (GroupRow t in g.rows)
-                    {
-                    
-                   
+
+
                     // GLAVNI ISPIS
-                    if(t.team.name.Length < 5) tbRezultati.Text += t.team.name + "\t\t\t\t" + t.points.ToString() + "\t" + t.team.potency + Environment.NewLine;
+                    if (t.team.name.Length < 5) tbRezultati.Text += t.team.name + "\t\t\t\t" + t.points.ToString() + "\t" + t.team.potency + Environment.NewLine;
                     else if (t.team.name.Length >= 5 && t.team.name.Length < 10) tbRezultati.Text += t.team.name + "\t\t\t" + t.points.ToString() + "\t" + t.team.potency + Environment.NewLine;
-                    else tbRezultati.Text += t.team.name + "\t\t" + t.points.ToString() + "\t" + t.team.potency +  Environment.NewLine;
+                    else tbRezultati.Text += t.team.name + "\t\t" + t.points.ToString() + "\t" + t.team.potency + Environment.NewLine;
 
                 }
-                    tbRezultati.Text += Environment.NewLine;
-                }
-            
-
-
-
-
+                tbRezultati.Text += Environment.NewLine;
+            }
         }
 
 
