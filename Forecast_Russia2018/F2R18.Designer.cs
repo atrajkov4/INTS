@@ -36,7 +36,7 @@
             // 
             this.tbUkupniPlasman.AcceptsTab = true;
             this.tbUkupniPlasman.Font = new System.Drawing.Font("Tw Cen MT", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUkupniPlasman.Location = new System.Drawing.Point(363, 12);
+            this.tbUkupniPlasman.Location = new System.Drawing.Point(490, 12);
             this.tbUkupniPlasman.Multiline = true;
             this.tbUkupniPlasman.Name = "tbUkupniPlasman";
             this.tbUkupniPlasman.ReadOnly = true;
@@ -51,7 +51,7 @@
             this.tbRezultati.Name = "tbRezultati";
             this.tbRezultati.ReadOnly = true;
             this.tbRezultati.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.tbRezultati.Size = new System.Drawing.Size(345, 569);
+            this.tbRezultati.Size = new System.Drawing.Size(472, 569);
             this.tbRezultati.TabIndex = 2;
             this.tbRezultati.Text = "";
             // 
@@ -60,7 +60,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SeaGreen;
-            this.ClientSize = new System.Drawing.Size(720, 593);
+            this.ClientSize = new System.Drawing.Size(841, 593);
             this.Controls.Add(this.tbRezultati);
             this.Controls.Add(this.tbUkupniPlasman);
             this.Name = "F2R18";

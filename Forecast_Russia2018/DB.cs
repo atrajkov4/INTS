@@ -80,7 +80,7 @@ namespace Forecast_Russia2018
                 G.name = "G";
                 Group H = new Group() { };
                 H.name = "H";
-                
+
 
                 foreach (Team t in teams)
                 {
@@ -134,14 +134,14 @@ namespace Forecast_Russia2018
                         gr.points = 0;
                         G.rows.Add(gr);
                     }
-                   
+
                     if (t.name == "Poland" || t.name == "Senegal" || t.name == "Colombia" || t.name == "Japan") {
                         GroupRow hr = new GroupRow();
                         hr.team = t;
                         hr.points = 0;
                         H.rows.Add(hr);
                     }
-            }
+                }
                 addGroup(A);
                 addGroup(B);
                 addGroup(C);
@@ -152,17 +152,173 @@ namespace Forecast_Russia2018
                 addGroup(H);
 
             }
-            
 
+
+        }
+
+        public void helper(string naziv1, string naziv2)
+        {
+            
+            foreach (Group s in wc)
+            {
+                Team prvi = new Team();
+                Team drugi = new Team();
+                foreach (GroupRow gr in s.rows)
+                {
+
+                    if (gr.team.name == naziv1) prvi = gr.team;
+                    if (gr.team.name == naziv2) drugi = gr.team;
+                }
+
+
+                if (prvi != null && drugi != null)
+                {
+                    Match game = new Match(prvi, drugi);
+                    game.Play();
+                    Console.Write(game.home + " " + game.home_score + ":" + game.away_score + " " + game.away + Environment.NewLine);
+                    if (game.home_score > game.away_score)
+                    {
+                        foreach (GroupRow gr in s.rows)
+                        {
+                            if (gr.team.name == game.home) gr.points += 3;
+                        }
+
+                    }
+                    else if (game.home_score < game.away_score)
+                    {
+                        foreach (GroupRow gr in s.rows)
+                        {
+                            if (gr.team.name == game.away)
+                                gr.points += 3;
+                        }
+                    }
+                    else {
+                        foreach (GroupRow gr in s.rows)
+                        {
+                            if (gr.team.name == game.away) gr.points += 1;
+                            if (gr.team.name == game.home) gr.points += 1;
+                        }
+
+                    }
+
+
+
+                }
+            }
         }
 
         public void PlayOff() {
             //proc grupama
             //nac parove za tekmu (9 tekma po grupi)
             //koristit Match(ekipa1,ekipa2), prilikom zavrsetka tekme azurirat bodove u grupi -> grouprows (team,points)
-            
+
+            helper("Belgium", "Panama");
+            helper("Panama", "Belgium");
+            helper("Tunisia", "England");
+            helper("England", "Tunisia");
+            helper("Tunisia","Belgium");
+            helper("Belgium", "Tunisia");
+            helper("Panama", "England");
+            helper("England", "Panama");
+            helper("England", "Belgium");
+            helper("Belgium", "England");
+            helper("Panama", "Tunisia");
+            helper("Tunisia", "Panama");
+
+            helper("Poland", "Senegal");
+            helper("Senegal", "Poland");
+            helper("Colombia", "Japan");
+            helper("Japan", "Colombia");
+            helper("Poland", "Colombia");
+            helper("Colombia", "Poland");
+            helper("Senegal", "Japan");
+            helper("Japan", "Senegal");
+            helper("Japan", "Poland");
+            helper("Poland", "Japan");
+            helper("Senegal", "Columbia");
+            helper("Columbia", "Senegal");
+
+            helper("Russia", "Egypt");
+            helper("Egypt", "Russia");
+            helper("Uruguay", "Saudi Arabia");
+            helper("Saudi Arabia", "Uruguay");
+            helper("Russia", "Uruguay");
+            helper("Uruguay", "Russia");
+            helper("Egypt", "Saudi Arabia");
+            helper("Saudi Arabia", "Egypt");
+            helper("Saudi Arabia", "Russia");
+            helper("Russia", "Saudi Arabia");
+            helper("Uruguay", "Egypt");
+            helper("Egypt", "Uruguay");
+
+            helper("Portugal", "Spain");
+            helper("Spain", "Portugal");
+            helper("Morocco", "Iran");
+            helper("Iran", "Morocco");
+            helper("Portugal", "Morocco");
+            helper("Morocco", "Portugal");
+            helper("Spain", "Iran");
+            helper("Iran", "Spain");
+            helper("Portugal", "Iran");
+            helper("Iran", "Portugal");
+            helper("Spain", "Morocco");
+            helper("Morocco", "Spain");
+
+            helper("France", "Australia");
+            helper("Australia", "France");
+            helper("Peru", "Denmark");
+            helper("Denmark", "Peru");
+            helper("France", "Peru");
+            helper("Peru", "France");
+            helper("Australia", "Denmark");
+            helper("Denmark", "Australia");
+            helper("France", "Denmark");
+            helper("Denmark", "France");
+            helper("Australia", "Peru");
+            helper("Peru", "Australia");
+
+            helper("Argentina", "Iceland");
+            helper("Croatia", "Nigeria");
+            helper("Iceland", "Argentina");
+            helper("Nigeria", "Croatia");
+            helper("Argentina", "Croatia");
+            helper("Croatia", "Argentina");
+            helper("Iceland", "Nigeria");
+            helper("Nigeria", "Iceland");
+            helper("Argentina", "Nigeria");
+            helper("Nigeria", "Argentina");
+            helper("Iceland", "Croatia");
+            helper("Croatia", "Iceland");
 
 
+            helper("Brazil", "Switzerland");
+            helper("Brazil", "Costa Rica");
+            helper("Brazil", "Serbia");
+            helper("Switzerland", "Costa Rica");
+            helper("Switzerland", "Serbia");
+            helper("Costa Rica", "Serbia");
+            helper("Switzerland", "Brazil");
+            helper("Costa Rica", "Brazil");
+            helper("Serbia", "Brazil");
+            helper("Costa Rica", "Switzerland");
+            helper("Serbia", "Switzerland");
+            helper("Serbia", "Costa Rica");
+
+            helper("Germany", "Mexico");
+            helper("Germany", "Sweden");
+            helper("Germany", "Korea Republic");
+            helper("Mexico", "Sweden");
+            helper("Mexico", "Korea Republic");
+            helper("Sweden", "Korea Republic");
+            helper("Mexico", "Germany");
+            helper("Sweden", "Germany");
+            helper("Korea Republic", "Germany");
+            helper("Sweden", "Mexico");
+            helper("Korea Republic", "Mexico");
+            helper("Korea Republic", "Sweden");
+            foreach (Group g in wc) {
+                g.rows.OrderByDescending(a => a.points);
+            }
         }
 
 
