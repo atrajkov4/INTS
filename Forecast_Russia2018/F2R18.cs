@@ -25,36 +25,25 @@ namespace Forecast_Russia2018
             tt.calculateOverallAndPotential();
             tt.calculateFailPotential();
             db.distribute();
-
-
-
             
-                foreach (Group g in db.giveGroups())
+            foreach (Group g in db.giveGroups())
                 {
 
-                    tbRezultati.Text += "[Group " + g.name + "]" + Environment.NewLine + "--------------------------" + Environment.NewLine;
-                    
+                    tbRezultati.Text += "[Group " + g.name + "]" + Environment.NewLine + "----------------------------------------" + Environment.NewLine;
+                
                     foreach (GroupRow t in g.rows)
                     {
+                    t.team.genPot();
                    
-                    //t.team.genPot();
-                    tbRezultati.Text += t.team.name + Environment.NewLine +  t.team.genPot() + Environment.NewLine + t.team.potency;
-                    tbRezultati.Text += Environment.NewLine;
+                    // GLAVNI ISPIS
+                    if(t.team.name.Length < 5) tbRezultati.Text += t.team.name + "\t\t\t\t" + t.points.ToString() + "\t" + t.team.potency + Environment.NewLine;
+                    else if (t.team.name.Length >= 5 && t.team.name.Length < 10) tbRezultati.Text += t.team.name + "\t\t\t" + t.points.ToString() + "\t" + t.team.potency + Environment.NewLine;
+                    else tbRezultati.Text += t.team.name + "\t\t" + t.points.ToString() + "\t" + t.team.potency + Environment.NewLine;
                     
-
-                    /*
-                    if(t.team.name.Length < 5) tbRezultati.Text += t.team.name + "\t\t\t\t" + t.points.ToString() + Environment.NewLine;
-                    else if (t.team.name.Length >= 5 && t.team.name.Length < 10) tbRezultati.Text += t.team.name + "\t\t\t" + t.points.ToString() + Environment.NewLine;
-                    else tbRezultati.Text += t.team.name + "\t\t" + t.points.ToString() + Environment.NewLine;
-                    */
                 }
                     tbRezultati.Text += Environment.NewLine;
                 }
                 
-            //    foreach (Team z in db.giveTeams())
-            //{
-            //    tbUkupniPlasman.Text += z.name + " " + z.form + " " + z.fail_potential + Environment.NewLine;
-            //}
 
 
             }
