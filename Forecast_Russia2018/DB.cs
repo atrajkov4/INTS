@@ -156,6 +156,15 @@ namespace Forecast_Russia2018
 
         }
 
+        public void PlayOff() {
+            //proc grupama
+            //nac parove za tekmu (9 tekma po grupi)
+            //koristit Match(ekipa1,ekipa2), prilikom zavrsetka tekme azurirat bodove u grupi -> grouprows (team,points)
+            
+
+
+        }
+
 
     }
 }
