@@ -16,10 +16,13 @@ namespace Forecast_Russia2018
         List<Match> last_games = new List<Match>();
         public int form; // ono na temelju zadnjih utakmica
         int broj; //broj igraca po timu
-        public int potency;
+        public float potency;
+        
 
-        public void genPot() {
-            potency = form * (overall * potential) / 100 * (1 / fail_potential);
+        public string genPot() {
+            float omjer = ((float)fail_potential * 3);
+            potency = (int)(this.form*0.5) + (float)((0.75  * this.overall + 0.4 * this.potential)) - omjer;
+            return this.form.ToString() + " " + (float)((overall * potential) / 100) + " " + omjer;
         }
 
         public Team() {

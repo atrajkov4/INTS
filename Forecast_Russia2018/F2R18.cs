@@ -36,10 +36,11 @@ namespace Forecast_Russia2018
                     
                     foreach (GroupRow t in g.rows)
                     {
-                    t.team.calculateForm();
-                    t.team.calculateOverall();
-                    t.team.genPot();
-                    tbRezultati.Text += t.team.name + "  " + t.team.potency.ToString();
+                   
+                    //t.team.genPot();
+                    tbRezultati.Text += t.team.name + Environment.NewLine +  t.team.genPot() + Environment.NewLine + t.team.potency;
+                    tbRezultati.Text += Environment.NewLine;
+                    
 
                     /*
                     if(t.team.name.Length < 5) tbRezultati.Text += t.team.name + "\t\t\t\t" + t.points.ToString() + Environment.NewLine;
