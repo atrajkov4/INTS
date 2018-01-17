@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Forecast_Russia2018
@@ -28,78 +29,103 @@ namespace Forecast_Russia2018
             a = away1;
             home = h.name;
             away = a.name;
+            
         }
 
         Random r = new Random();
         Random r2 = new Random();
         Random r3 = new Random();
+       
+
+        public float takeTime() {
+            Thread.Sleep(15);
+            long dt = DateTime.Now.Millisecond;
+            return (float)dt/10;
+        }
+
+        public long takeTicks() {
+            long dt = DateTime.Now.Ticks;
+            return dt;
+        }
 
         public void Play() {
-            chancesHome = (h.potency / (h.potency + a.potency))*100;
-            chancesAway = 100 - chancesAway;
-            if (r.Next(0, 100) < chancesHome + 1)
+            chancesHome = (h.potency / (h.potency + a.potency)) * 100;
+            
+            if ( takeTime() <= (int)chancesHome + 1)
             {
-                int result = r2.Next(0, 100);
-                if (result <= 58)
+                
+                if (takeTicks() % 2 == 0)
                 {
-                    do
-                    {
-                        home_score = r3.Next(0, 4);
-                        away_score = r3.Next(0, 4);
-
-                    } while (home_score <= away_score);
-
-                }
-                else if (result > 58 && result < 84)
-                {
-                    do
-                    {
-                        home_score = r3.Next(2, 5);
-                        away_score = r3.Next(2, 5);
-
-                    } while (home_score <= away_score);
-                }
-                else
-                {
-
+                   
                     do
                     {
                         home_score = r3.Next(1, 7);
                         away_score = r3.Next(1, 7);
+                        h.goals += home_score;
+                        a.goals += away_score;
+
+                    } while (home_score <= away_score);
+
+                }
+                else if (takeTicks() % 3 == 0)
+                {
+                    
+                    do
+                    {
+                        home_score = r3.Next(2, 5);
+                        away_score = r3.Next(2, 5);
+                        h.goals += home_score;
+                        a.goals += away_score;
+
+                    } while (home_score != away_score);
+                }
+                else 
+                {
+                    
+                    do
+                    {
+                        home_score = r3.Next(0, 4);
+                        away_score = r3.Next(0, 4);
+                        h.goals += home_score;
+                        a.goals += away_score;
+
 
                     } while (home_score <= away_score);
                 }
             }
             else {
-
-                int result = r2.Next(0, 100);
-                if (result <= 58)
+                
+                if (takeTicks() % 2 == 0)
                 {
+                    do
+                    {
+                        home_score = r3.Next(1, 3);
+                        away_score = r3.Next(1, 3);
+                        h.goals += home_score;
+                        a.goals += away_score;
+
+                    } while (home_score >= away_score);
+
+                }
+                else if (takeTicks() % 3 == 0)
+                {
+                    do
+                    {
+                        home_score = r3.Next(2, 6);
+                        away_score = r3.Next(2, 6);
+                        h.goals += home_score;
+                        a.goals += away_score;
+                    } while (home_score != away_score);
+                }
+                else 
+                {
+
                     do
                     {
                         home_score = r3.Next(0, 4);
                         away_score = r3.Next(0, 4);
-
-                    } while (home_score >= away_score);
-
-                }
-                else if (result > 58 && result < 84)
-                {
-                    do
-                    {
-                        home_score = r3.Next(2, 5);
-                        away_score = r3.Next(2, 5);
-
-                    } while (home_score >= away_score);
-                }
-                else
-                {
-
-                    do
-                    {
-                        home_score = r3.Next(1, 7);
-                        away_score = r3.Next(1, 7);
-
+                        h.goals += home_score;
+                        a.goals += away_score;
                     } while (home_score >= away_score);
                 }
 
